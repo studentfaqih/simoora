@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-white space-y-6">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center">
+        <h2 class="text-3xl font-bold neon-text">Daftar Kriteria</h2>
+    </div>
+
+    <!-- Form Section -->
+    <div class="card p-6">
+        <form method="post" action="/kriteria/add" class="flex flex-wrap gap-4 items-end">
+            <div class="flex-1 min-w-[200px]">
+                <label for="nama_kriteria" class="block text-sm font-medium text-gray-300 mb-1">Nama Kriteria</label>
+                <input type="text" 
+                       name="nama_kriteria" 
+                       id="nama_kriteria"
+                       placeholder="Masukkan nama kriteria" 
+                       required
+                       class="w-full px-4 py-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            
+            <div class="w-48">
+                <label for="jenis" class="block text-sm font-medium text-gray-300 mb-1">Jenis</label>
+                <select name="jenis" 
+                        id="jenis"
+                        required
+                        class="w-full px-4 py-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="Benefit">Benefit</option>
+                    <option value="Cost">Cost</option>
+                </select>
+            </div>
+            
+            <div class="w-48">
+                <label for="bobot" class="block text-sm font-medium text-gray-300 mb-1">Bobot</label>
+                <input type="number" 
+                       step="0.01" 
+                       name="bobot" 
+                       id="bobot"
+                       placeholder="0.00" 
+                       required
+                       class="w-full px-4 py-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            
+            <div>
+                <button type="submit" 
+                        class="px-6 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200">
+                    Tambah Kriteria
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table Section -->
+    <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-gray-300">
+                <thead class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase">Nama Kriteria</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase">Jenis</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase">Bobot</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-800 bg-opacity-75 divide-y divide-gray-700">
+                    {% for kriteria in kriteria_list %}
+                    <tr class="hover:bg-gray-700">
+                        <td class="px-6 py-4">{{ kriteria.nama_kriteria }}</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                       {% if kriteria.jenis == 'Benefit' %}
+                                       bg-green-700 text-green-300
+                                       {% else %}
+                                       bg-red-700 text-red-300
+                                       {% endif %}">
+                                {{ kriteria.jenis }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">{{ kriteria.bobot }}</td>
+                        <td class="px-6 py-4">
+                            <a href="/kriteria/delete/{{ kriteria.id }}" 
+                               onclick="return confirm('Apakah Anda yakin ingin menghapus kriteria ini?')"
+                               class="text-red-500 hover:text-red-700">
+                                Hapus
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

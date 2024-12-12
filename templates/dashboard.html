@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-white">
+    <!-- Deskripsi Singkat -->
+    <section class="mb-8">
+        <h2 class="text-3xl font-bold neon-text">Deskripsi Penelitian</h2>
+        <p class="mt-4 text-gray-300">
+            Penelitian ini bertujuan untuk membantu bank dalam menentukan kelayakan nasabah penerima kredit dengan 
+            menggunakan sistem pendukung keputusan berbasis metode MOORA dan MOOSRA. Metode ini digunakan untuk 
+            memberikan alternatif terbaik berdasarkan kriteria seperti penghasilan, usia, pekerjaan, jaminan, dan jumlah tanggungan.
+        </p>
+    </section>
+
+    <!-- Data Kriteria dan Alternatif -->
+    <section class="mb-8">
+        <h2 class="text-3xl font-bold neon-text">Data Kriteria dan Alternatif</h2>
+        <div class="mt-4">
+            <h3 class="text-xl font-semibold text-indigo-400">Kriteria</h3>
+            <ul class="mt-2 text-gray-300 list-disc list-inside">
+                <li><b>K1:</b> Penghasilan (Benefit)</li>
+                <li><b>K2:</b> Usia (Benefit)</li>
+                <li><b>K3:</b> Pekerjaan (Benefit)</li>
+                <li><b>K4:</b> Jaminan (Benefit)</li>
+                <li><b>K5:</b> Jumlah Tanggungan (Cost)</li>
+            </ul>
+        </div>
+        <div class="mt-6">
+            <h3 class="text-xl font-semibold text-indigo-400">Alternatif</h3>
+            <ul class="mt-2 text-gray-300 list-disc list-inside">
+                <li><b>A1:</b> Syarifuddin</li>
+                <li><b>A2:</b> Mujiani</li>
+                <li><b>A3:</b> Siti Aminah</li>
+                <li><b>A4:</b> Marihot Sibuea</li>
+                <li><b>A5:</b> Ramayati</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Deskripsi Metode -->
+    <section class="mb-8">
+        <h2 class="text-3xl font-bold neon-text">Metode MOORA</h2>
+        <p class="mt-4 text-gray-300">
+            MOORA (Multi-Objective Optimization on the Basis of Ratio Analysis) adalah metode pengambilan keputusan 
+            multi-kriteria yang menggunakan normalisasi matriks untuk menentukan prioritas. Langkah utama meliputi:
+        </p>
+        <ul class="mt-2 text-gray-300 list-disc list-inside">
+            <li>Pembuatan matriks keputusan berdasarkan data kriteria dan alternatif.</li>
+            <li>Normalisasi matriks untuk menghilangkan skala yang berbeda.</li>
+            <li>Penentuan nilai akhir dengan menghitung optimasi atribut benefit dan cost.</li>
+        </ul>
+        <p class="mt-4 text-gray-300">
+            Metode ini memberikan solusi sederhana dan efektif untuk menentukan alternatif terbaik dalam pengambilan keputusan.
+        </p>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-white">
+    <!-- Matriks Keputusan -->
+    <section class="mb-8">
+        <h2 class="text-3xl font-bold neon-text">Matriks Keputusan</h2>
+        <div class="mt-4 overflow-x-auto">
+            <table class="w-full border-separate border-spacing-0">
+                <thead class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+                    <tr>
+                        <th class="px-4 py-2 text-left">Alternatif</th>
+                        {% for kriteria in kriteria_list %}
+                        <th class="px-4 py-2 text-left">{{ kriteria.nama_kriteria }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-800 bg-opacity-75">
+                    {% for row in matriks %}
+                    <tr class="border-b border-gray-700">
+                        <td class="px-4 py-2 text-gray-300">{{ row.nama_alternatif }}</td>
+                        {% for value in row.nilai_kriteria %}
+                        <td class="px-4 py-2 text-gray-300">{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Hasil Normalisasi dan Ranking -->
+    <section class="mb-8">
+        <h2 class="text-3xl font-bold neon-text">Hasil Normalisasi dan Ranking</h2>
+        <div class="mt-4 overflow-x-auto">
+            <table class="w-full border-separate border-spacing-0">
+                <thead class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+                    <tr>
+                        <th class="px-4 py-2 text-left">Alternatif</th>
+                        <th class="px-4 py-2 text-left">Nilai Preferensi</th>
+                        <th class="px-4 py-2 text-left">Ranking</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-800 bg-opacity-75">
+                    {% for rank in ranking %}
+                    <tr class="border-b border-gray-700">
+                        <td class="px-4 py-2 text-gray-300">{{ rank.nama_alternatif }}</td>
+                        <td class="px-4 py-2 text-gray-300">{{ rank.preferensi }}</td>
+                        <td class="px-4 py-2 text-gray-300">{{ rank.ranking }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-white space-y-6">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center">
+        <h2 class="text-3xl font-bold neon-text">Daftar Alternatif</h2>
+    </div>
+
+    <!-- Form Section -->
+    <div class="card p-6">
+        <form method="post" action="/alternatif/add" class="flex gap-4 items-end">
+            <div class="flex-1">
+                <label for="nama_alternatif" class="block text-sm font-medium text-gray-300 mb-1">Nama Alternatif</label>
+                <input type="text" 
+                       name="nama_alternatif" 
+                       id="nama_alternatif"
+                       placeholder="Masukkan nama alternatif" 
+                       required
+                       class="w-full px-4 py-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            
+            <div>
+                <button type="submit" 
+                        class="px-6 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200">
+                    Tambah Alternatif
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table Section -->
+    <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-gray-300">
+                <thead class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase">Nama Alternatif</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-800 bg-opacity-75 divide-y divide-gray-700">
+                    {% for alternatif in alternatif_list %}
+                    <tr class="hover:bg-gray-700">
+                        <td class="px-6 py-4">{{ alternatif.nama_alternatif }}</td>
+                        <td class="px-6 py-4">
+                            <a href="/alternatif/delete/{{ alternatif.id }}" 
+                               onclick="return confirm('Apakah Anda yakin ingin menghapus alternatif ini?')"
+                               class="text-red-500 hover:text-red-700">
+                                Hapus
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
